@@ -38,6 +38,7 @@ export class NewPlacePage {
         this.navCtrl.pop();
       }
     ).catch(reason => {
+      //
       place.location.longitude=0;
       place.location.latitude=0;
       this.placesService.addPlace(place);
