@@ -1,0 +1,66 @@
+<!--
+  Generated template for the GalleryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="danger">
+    <ion-title>gallery</ion-title>
+    <button ion-button="" menuToggle="">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div padding="">
+    <ion-item>
+      <ion-label>Mot Clé:</ion-label>
+      <ion-input type="text" [(ngModel)]="motCle"></ion-input>
+    </ion-item>
+    <button ion-button block (click)="onSearch()">Chercher</button>
+  </div>
+  <ion-card *ngFor="let image of images?.hits">
+    <ion-card-header class="myCardHeader">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{image.userImageURL}}">
+        </ion-avatar>
+        <h3>{{image.user}}</h3>
+        <p>{{image.user_id}}</p>
+      </ion-item>
+    </ion-card-header>
+    <img src="{{image.previewURL}}" (click)="onDetailImage(image)" >
+    <ion-card-content>
+      <p>tags <strong>{{image.tags}}</strong></p>
+      <p>height <strong>{{image.imageHeight}}</strong></p>
+      <p>width <strong>{{image.imageWidth}}</strong></p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{image.likes}}</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>{{image.comments}}</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          {{image.favorites}} Favorites
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
